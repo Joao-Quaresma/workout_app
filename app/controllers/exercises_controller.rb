@@ -3,7 +3,7 @@ class ExercisesController < ApplicationController
   before_action :set_exercise, except: [:index, :new, :create]
 
   def index
-    @exercises = current_user.exercises
+    @exercises = current_user.exercises.past_7_days
   end
 
   def show; end
