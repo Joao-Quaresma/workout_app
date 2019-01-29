@@ -2,7 +2,12 @@ require "rails_helper"
 
 RSpec.feature "Hiding signup and signin" do
   before do
-    @john = User.create(email: "john@something.com", password: "password")
+    @john = User.create(
+      first_name: "John",
+      last_name: "Doe",
+      email: "john@example.com",
+      password: "password"
+    )
   end
 
   scenario "sign in and sign up urls successfully hided" do
