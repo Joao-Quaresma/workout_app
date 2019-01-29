@@ -24,6 +24,19 @@ class ExercisesController < ApplicationController
     end
   end
 
+  def edit
+
+  end
+
+  def update
+    if @exercise.update(exercise_params)
+      flash[:notice] = 'Exercise has been updated'
+    else
+      flash[:alert] = 'Exercise has not been updated'
+    end
+    redirect_to [current_user, @exercise]
+  end
+
   private
 
   def set_exercise
