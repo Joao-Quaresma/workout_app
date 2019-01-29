@@ -1,6 +1,6 @@
 $(document).on('turbolinks:load', function() {
 
-  $('#exercise_exercise_date').datepicker({ dateFormat: 'yy-mm-dd' });
+  $('#exercise_workout_date').datepicker({ dateFormat: 'yy-mm-dd' });
 
   var regex = /\/users\/\d+\/exercises$/i;
 
