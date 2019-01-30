@@ -37,11 +37,11 @@ RSpec.feature "Editing Exercise" do
     link = "a[href='/users/#{@owner.id}/exercises/#{@owner_exer.id}/edit']"
     find(link).click
 
-    fill_in "Duration", with: -30
+    fill_in "Duration", with: -301
     click_button "Update Exercise"
 
     expect(page).to have_content("Exercise has not been updated")
     expect(page).to have_content(@owner_exer.duration_in_min)
-    expect(page).not_to have_content(-30)
+    expect(page).not_to have_content(-301)
   end
 end
