@@ -4,6 +4,7 @@ class ExercisesController < ApplicationController
 
   def index
     @exercises = current_user.exercises.past_7_days
+    @friends = current_user.friends
   end
 
   def show; end
