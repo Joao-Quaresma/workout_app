@@ -19,14 +19,14 @@ var drawChart = function() {
       width  = 600 - margin.left - margin.right,
       height = 450 - margin.top - margin.bottom;
 
-  var JSONData = $("#chart").data("exercises");
+  var JSONData = $("#chart").data("workouts");
 
 var data = JSONData.slice()
 
 var parseTime = d3.timeParse("%Y-%m-%d");
 
-var exerciseFn = function(d) { return d.duration_in_min }
-var dateFn = function(d) { return parseTime(d.exercise_date) }
+var workoutFn = function(d) { return d.duration_in_min }
+var dateFn = function(d) { return parseTime(d.workout_date) }
 
 var x = d3.scaleTime()
   .range([0, width])
@@ -34,14 +34,14 @@ var x = d3.scaleTime()
 
 var y = d3.scaleLinear()
   .range([height, 0])
-  .domain([0, d3.max(data, exerciseFn)])
+  .domain([0, d3.max(data, workoutFn)])
 
-var exercise_line = d3.line()
-    .x(function(d) { return x(d.exercise_date); })
+var workout_line = d3.line()
+    .x(function(d) { return x(d.workout_date); })
     .y(function(d) { return y(d.duration_in_min);  });
 
 data.forEach(function(d) {
-  d.exercise_date = parseTime(d.exercise_date);
+  d.workout_date = parseTime(d.workout_date);
   d.duration_in_min = +d.duration_in_min;
 });
 
@@ -53,7 +53,7 @@ var svg = d3.select("#chart").append("svg")
 
   svg.append("path")
       .attr("class", "line")
-      .attr("d", exercise_line(data));
+      .attr("d", workout_line(data));
 
 svg.append("g")
  .attr("class", "x axis")
@@ -73,7 +73,7 @@ svg.append("g")
     .attr("x", width / 2)
     .attr("y", height + margin.top - 15)
     .style("text-anchor", "middle")
-    .text("Date of exercise")
+    .text("Date of workout")
 
  svg.append("g")
   .attr("class", "y axis")
@@ -86,7 +86,7 @@ svg.append("text")
    .attr("x", 0 - (height / 2))
    .attr("dy", "1em")
    .style("text-anchor", "middle")
-   .text("exercise duration (min)")
+   .text("Workout duration (min)")
 
  // Chat title
  svg.append("text")
@@ -95,5 +95,5 @@ svg.append("text")
     .style("text-anchor", "middle")
     .style("font-size", "18px")
     .style("text-decoration", "underline")
-    .text("exercise duration vs exercise date")
+    .text("Workout duration vs Workout date")
 };
